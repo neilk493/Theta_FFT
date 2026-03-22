@@ -1,0 +1,49 @@
+{
+  "module_name": "Theta_FFT Module 4 Validation",
+  "script_name": "validation.py",
+  "timestamp_utc": "2026-03-22T19:34:07.546835+00:00",
+  "input_comparison_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\output\\comparison",
+  "input_pdb_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\pdb",
+  "input_fft_data_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\fft_data",
+  "output_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\output\\validation",
+  "motif_cluster_assignments_file": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\output\\comparison\\motif_cluster_assignments.csv",
+  "dssp_executable_requested": "auto-detect",
+  "dssp_executable_used": "mkdssp",
+  "n_input_windows": 1123,
+  "n_validated_windows": 1075,
+  "n_metric_eligible_windows": 1075,
+  "n_scored_windows": 1075,
+  "n_skipped_windows": 48,
+  "n_skipped_proteins": 0,
+  "motif_clusters_seen": [
+    "motif000",
+    "motif001",
+    "motif002",
+    "motif003",
+    "motif004",
+    "motif005"
+  ],
+  "simplified_dssp_mapping": {
+    "H": [
+      "H",
+      "G",
+      "I",
+      "P"
+    ],
+    "E": [
+      "E",
+      "B"
+    ],
+    "L": "All other DSSP codes, including blank/space, dash, T, S, C, and any non-helix/non-sheet symbol."
+  },
+  "notes": [
+    "input = precomputed motif_cluster_assignments.csv",
+    "no FFT was recomputed in this module",
+    "no motif clustering was recomputed in this module",
+    "windows were mapped to DSSP using fft_data seq_index-to-residue bridges",
+    "DSSP labels were simplified to H/E/L using H,G,I,P -> H and E,B -> E",
+    "majority vote was performed at the window level",
+    "no plots were generated in this module",
+    "window_start_seq_index and window_end_seq_index were reconstructed from window_center_seq_index and window_length when absent in the input comparison table"
+  ]
+}

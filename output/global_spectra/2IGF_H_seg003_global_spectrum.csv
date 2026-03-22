@@ -1,0 +1,6 @@
+protein,chain,source_file,segment_id,segment_label,segment_start_seq_index,segment_end_seq_index,segment_length,segment_start_res_i,segment_end_res_j,fft_bin,frequency_cycles_per_residue,period_residues,amplitude,power,power_fraction_nonzero
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,0,0.0,,2.842170943040401e-14,1.0097419586828951e-28,
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,1,0.125,8.0,275.1076276008172,9460.525845518738,0.3697822743907534
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,2,0.25,4.0,46.277650929647834,267.70262194579186,0.010463655617026122
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,3,0.375,2.6666666666666665,300.517122971932,11288.817649915913,0.4412444650469105
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,4,0.5,2.0,191.143873,4566.997523180017,0.17850960494530996

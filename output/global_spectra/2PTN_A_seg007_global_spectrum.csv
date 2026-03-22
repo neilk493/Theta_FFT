@@ -1,0 +1,6 @@
+protein,chain,source_file,segment_id,segment_label,segment_start_seq_index,segment_end_seq_index,segment_length,segment_start_res_i,segment_end_res_j,fft_bin,frequency_cycles_per_residue,period_residues,amplitude,power,power_fraction_nonzero
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,0,0.0,,0.0,0.0,
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,1,0.1111111111111111,9.0,581.0246713485126,37509.96319062745,0.6424098019089854
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,2,0.2222222222222222,4.5,180.03249479601382,3601.2999091640827,0.06167722291551111
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,3,0.3333333333333333,3.0,306.4584502234517,10435.197968151091,0.1787171431102877
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,4,0.4444444444444444,2.25,248.16731256155956,6843.00166933631,0.11719583206521567

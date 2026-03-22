@@ -1,0 +1,13 @@
+protein,chain,source_file,segment_id,segment_label,segment_start_seq_index,segment_end_seq_index,segment_length,segment_start_res_i,segment_end_res_j,reason
+1AL1,A,1AL1_fft_data.csv,seg000,1AL1_A_seg000,0,9,10,1,11,segment_shorter_than_window_size
+1LYZ,A,1LYZ_fft_data.csv,seg000,1LYZ_A_seg000,0,6,7,1,8,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg002,2IGF_H_seg002,158,159,2,156,162,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg003,2IGF_H_seg003,160,167,8,162,171,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg004,2IGF_H_seg004,168,177,10,171,183,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg005,2IGF_H_seg005,178,191,14,183,198,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg006,2IGF_H_seg006,192,194,3,198,202,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg007,2IGF_H_seg007,195,199,5,202,208,segment_shorter_than_window_size
+2IGF,H,2IGF_fft_data.csv,seg009,2IGF_H_seg009,216,218,3,226,232,segment_shorter_than_window_size
+2PTN,A,2PTN_fft_data.csv,seg003,2PTN_A_seg003,107,110,4,127,132,segment_shorter_than_window_size
+2PTN,A,2PTN_fft_data.csv,seg005,2PTN_A_seg005,161,161,1,185,186,segment_shorter_than_window_size
+2PTN,A,2PTN_fft_data.csv,seg007,2PTN_A_seg007,178,186,9,209,219,segment_shorter_than_window_size

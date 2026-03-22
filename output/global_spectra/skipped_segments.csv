@@ -1,0 +1,8 @@
+protein,chain,source_file,segment_id,segment_label,segment_start_seq_index,segment_end_seq_index,segment_length,segment_start_res_i,segment_end_res_j,reason
+1LYZ,A,1LYZ_fft_data.csv,seg000,1LYZ_A_seg000,0,6,7,1,8,length_below_min_length
+2IGF,H,2IGF_fft_data.csv,seg002,2IGF_H_seg002,158,159,2,156,162,length_below_min_length
+2IGF,H,2IGF_fft_data.csv,seg006,2IGF_H_seg006,192,194,3,198,202,length_below_min_length
+2IGF,H,2IGF_fft_data.csv,seg007,2IGF_H_seg007,195,199,5,202,208,length_below_min_length
+2IGF,H,2IGF_fft_data.csv,seg009,2IGF_H_seg009,216,218,3,226,232,length_below_min_length
+2PTN,A,2PTN_fft_data.csv,seg003,2PTN_A_seg003,107,110,4,127,132,length_below_min_length
+2PTN,A,2PTN_fft_data.csv,seg005,2PTN_A_seg005,161,161,1,185,186,length_below_min_length

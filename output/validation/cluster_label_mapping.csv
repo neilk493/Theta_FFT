@@ -1,0 +1,7 @@
+motif_cluster_id,predicted_structural_class,n_total_windows_in_cluster,n_validated_windows_in_cluster,count_H,count_E,count_L,majority_fraction,mapping_status
+motif000,E,276,260,9,129,122,0.49615384615384617,RESOLVED
+motif001,L,229,210,68,66,76,0.3619047619047619,RESOLVED
+motif002,L,192,180,31,71,78,0.43333333333333335,RESOLVED
+motif003,H,176,176,176,0,0,1.0,RESOLVED
+motif004,H,138,138,135,0,3,0.9782608695652174,RESOLVED
+motif005,H,112,111,45,26,40,0.40540540540540543,RESOLVED

@@ -1,0 +1,16 @@
+feature_name,raw_mean,raw_std,used_for_comparison,dropped_zero_variance
+theta_mean_deg,8.104607162010241,65.43858535404786,True,False
+theta_std_deg,72.95892481495673,34.959533786267166,True,False
+dominant_frequency_cycles_per_residue,0.21538290293855744,0.1607569135814552,True,False
+dominant_power_fraction_nonzero,0.3517810517809179,0.11801430737320057,True,False
+spectral_centroid_cycles_per_residue,0.24438418812781332,0.06328455703203886,True,False
+spectral_bandwidth_cycles_per_residue,0.1325447397656167,0.022375236483846744,True,False
+low_band_power_fraction,0.2196065658255398,0.16980357165796187,True,False
+mid_band_power_fraction,0.1497856556403674,0.12953541947861466,True,False
+high_band_power_fraction,0.6306077785340927,0.19582548176819126,True,False
+peak1_frequency_cycles_per_residue,0.21538290293855744,0.1607569135814552,True,False
+peak1_power_fraction_nonzero,0.3517810517809179,0.11801430737320057,True,False
+peak2_frequency_cycles_per_residue,0.25651157613535175,0.13995086546991906,True,False
+peak2_power_fraction_nonzero,0.2136461271547861,0.051544888821752156,True,False
+peak3_frequency_cycles_per_residue,0.26552760463045416,0.13274226375928602,True,False
+peak3_power_fraction_nonzero,0.14674199240436453,0.03847217970089373,True,False

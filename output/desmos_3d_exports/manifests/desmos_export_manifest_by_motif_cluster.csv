@@ -1,0 +1,7 @@
+export_type,group_name,part,n_points,csv_path,paste_txt_path,suggested_hex_color,suggested_rgb_expression,desmos_expression_hint
+by_motif_cluster,motif000,part01,276,by_motif_cluster/motif000_desmos.csv,by_motif_cluster/motif000_desmos_paste.txt,#1F77B4,"rgb(31,119,180)","(x_1,y_1,z_1)"
+by_motif_cluster,motif001,part01,229,by_motif_cluster/motif001_desmos.csv,by_motif_cluster/motif001_desmos_paste.txt,#FF7F0E,"rgb(255,127,14)","(x_1,y_1,z_1)"
+by_motif_cluster,motif002,part01,192,by_motif_cluster/motif002_desmos.csv,by_motif_cluster/motif002_desmos_paste.txt,#2CA02C,"rgb(44,160,44)","(x_1,y_1,z_1)"
+by_motif_cluster,motif003,part01,176,by_motif_cluster/motif003_desmos.csv,by_motif_cluster/motif003_desmos_paste.txt,#D62728,"rgb(214,39,40)","(x_1,y_1,z_1)"
+by_motif_cluster,motif004,part01,138,by_motif_cluster/motif004_desmos.csv,by_motif_cluster/motif004_desmos_paste.txt,#9467BD,"rgb(148,103,189)","(x_1,y_1,z_1)"
+by_motif_cluster,motif005,part01,112,by_motif_cluster/motif005_desmos.csv,by_motif_cluster/motif005_desmos_paste.txt,#8C564B,"rgb(140,86,75)","(x_1,y_1,z_1)"

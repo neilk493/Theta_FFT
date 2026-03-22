@@ -1,0 +1,10 @@
+export_type,group_name,part,n_points,csv_path,paste_txt_path,suggested_hex_color,suggested_rgb_expression,desmos_expression_hint
+by_protein,2HHB,part01,124,by_protein/2HHB_desmos.csv,by_protein/2HHB_desmos_paste.txt,#C0392B,"rgb(192,57,43)","(x_1,y_1,z_1)"
+by_protein,1GZM,part01,309,by_protein/1GZM_desmos.csv,by_protein/1GZM_desmos_paste.txt,#E74C3C,"rgb(231,76,60)","(x_1,y_1,z_1)"
+by_protein,1TEN,part01,72,by_protein/1TEN_desmos.csv,by_protein/1TEN_desmos_paste.txt,#2980B9,"rgb(41,128,185)","(x_1,y_1,z_1)"
+by_protein,1FNA,part01,74,by_protein/1FNA_desmos.csv,by_protein/1FNA_desmos_paste.txt,#5DADE2,"rgb(93,173,226)","(x_1,y_1,z_1)"
+by_protein,2IGF,part01,129,by_protein/2IGF_desmos.csv,by_protein/2IGF_desmos_paste.txt,#1A5276,"rgb(26,82,118)","(x_1,y_1,z_1)"
+by_protein,1PKK,part01,165,by_protein/1PKK_desmos.csv,by_protein/1PKK_desmos_paste.txt,#148F77,"rgb(20,143,119)","(x_1,y_1,z_1)"
+by_protein,1UBQ,part01,59,by_protein/1UBQ_desmos.csv,by_protein/1UBQ_desmos_paste.txt,#7D6608,"rgb(125,102,8)","(x_1,y_1,z_1)"
+by_protein,1LYZ,part01,86,by_protein/1LYZ_desmos.csv,by_protein/1LYZ_desmos_paste.txt,#82E0AA,"rgb(130,224,170)","(x_1,y_1,z_1)"
+by_protein,2PTN,part01,105,by_protein/2PTN_desmos.csv,by_protein/2PTN_desmos_paste.txt,#7F8C8D,"rgb(127,140,141)","(x_1,y_1,z_1)"

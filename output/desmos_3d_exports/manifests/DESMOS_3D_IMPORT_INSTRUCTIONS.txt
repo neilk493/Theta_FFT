@@ -1,0 +1,12 @@
+Desmos 3D import workflow
+
+1. Open Desmos 3D and create or open a blank graph.
+2. Open one *_desmos_paste.txt file and paste its contents directly into a Desmos table.
+3. If the table does not auto-plot, add a new expression using the table variable names in point form, for example:
+   (x_1,y_1,z_1)
+4. Repeat for each protein group or motif-cluster group that you want to inspect.
+5. Set the point color manually in Desmos using the suggested colors listed in DESMOS_3D_COLOR_GUIDE.txt.
+6. For best readability, import either the protein-split export set or the motif-split export set, not both at once.
+7. If a group was split into multiple parts, import all parts for that group.
+
+Note: actual table variable names may vary depending on paste order, so x_1/y_1/z_1 is only a generic example.

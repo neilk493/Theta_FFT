@@ -1,0 +1,22 @@
+Desmos 3D color guide
+
+Protein colors
+2HHB: #C0392B | rgb(192,57,43)
+1GZM: #E74C3C | rgb(231,76,60)
+1TEN: #2980B9 | rgb(41,128,185)
+1FNA: #5DADE2 | rgb(93,173,226)
+2IGF: #1A5276 | rgb(26,82,118)
+1PKK: #148F77 | rgb(20,143,119)
+1UBQ: #7D6608 | rgb(125,102,8)
+1LYZ: #82E0AA | rgb(130,224,170)
+2PTN: #7F8C8D | rgb(127,140,141)
+
+Motif cluster colors
+motif000: #1F77B4 | rgb(31,119,180)
+motif001: #FF7F0E | rgb(255,127,14)
+motif002: #2CA02C | rgb(44,160,44)
+motif003: #D62728 | rgb(214,39,40)
+motif004: #9467BD | rgb(148,103,189)
+motif005: #8C564B | rgb(140,86,75)
+
+Colors are applied manually in Desmos. The CSV and TXT exports contain only numeric coordinates.

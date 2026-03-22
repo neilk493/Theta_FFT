@@ -1,0 +1,48 @@
+{
+  "module_name": "Module 1: global spectral analysis",
+  "script_name": "global_spectral_analysis.py",
+  "timestamp_utc": "2026-03-22T04:31:44.539299+00:00",
+  "input_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\fft_data",
+  "output_dir": "C:\\Users\\neilk\\Downloads\\Theta_FFT\\output\\global_spectra",
+  "min_length": 8,
+  "n_input_files": 10,
+  "n_segments_analyzed": 22,
+  "n_segments_skipped": 7,
+  "required_columns": [
+    "protein",
+    "chain",
+    "seq_index",
+    "res_i",
+    "res_j",
+    "theta_signed",
+    "has_gap_before"
+  ],
+  "band_definitions": {
+    "low": {
+      "range": "0 < f <= 1/12",
+      "lower_exclusive": 0.0,
+      "upper_inclusive": 0.08333333333333333
+    },
+    "mid": {
+      "range": "1/12 < f <= 1/6",
+      "lower_exclusive": 0.08333333333333333,
+      "upper_inclusive": 0.16666666666666666
+    },
+    "high": {
+      "range": "1/6 < f <= 1/2",
+      "lower_exclusive": 0.16666666666666666,
+      "upper_inclusive": 0.5
+    }
+  },
+  "notes": [
+    "signal = theta_signed in degrees",
+    "x_axis = seq_index",
+    "gaps handled by segmenting at has_gap_before == 1",
+    "each contiguous segment analyzed independently",
+    "signal mean-centered before FFT",
+    "no smoothing",
+    "no tapering/windowing",
+    "no interpolation across gaps",
+    "no plotting performed in this module"
+  ]
+}
