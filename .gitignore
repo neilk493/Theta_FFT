@@ -1,0 +1,12 @@
+output/
+pycache/
+__pycache__/
+*.pyc
+deps/
+vendor_py312/
+*.pdf
+
+!*.py
+!fft_data/*.csv
+!pdb/*.pdb
+!README.md
