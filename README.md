@@ -141,7 +141,7 @@ output/desmos_3d_exports/ 3D t-SNE coordinate exports organized by motif cluster
 
 1LYZ is mixed, hen egg-white lysozyme with multiple helices and a small antiparallel sheet
 
-2PTN is beta-sheet-dominated, trypsin composed of two beta barrel domains
+2PTN is mixed, trypsin composed of two beta barrel domains with significant loop content and minor helical regions
 
 
 --- Key Results: ---
