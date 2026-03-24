@@ -70,7 +70,7 @@ plot_global_spectra.py reads output/global_spectra/global_spectra_long.csv and p
 
 plot_local_spectrograms.py reads output/spectrograms/local_spectra_long.csv and produces per-segment spectrogram heatmaps with frequency on the y-axis and residue position on the x-axis saved to output/spectrogram_plots/
 
-plot_comparison.py reads all outputs from output/comparison/ and produces five publication-quality figures saved to output/comparison_plots/ including a 2D and 3D t-SNE embedding of all windows colored by protein and by motif cluster, a protein similarity heatmap with structural class banding, a spectral distance distribution plot by structural class pairing, and a motif cluster protein composition chart
+plot_comparison.py reads all outputs from output/comparison/ and produces five quality figures saved to output/comparison_plots/ including a 2D and 3D t-SNE embedding of all windows colored by protein and by motif cluster, a protein similarity heatmap with structural class banding, a spectral distance distribution plot by structural class pairing, and a motif cluster protein composition chart
 
 plot_validation.py reads all outputs from output/validation/ and produces eight validation figures saved to output/validation_plots/ including a cluster purity heatmap, a t-SNE recolored by DSSP majority label, per-class precision and recall bars, per-protein DSSP composition and accuracy, and supporting ambiguity summaries
 
