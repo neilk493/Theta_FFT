@@ -10,27 +10,27 @@ Theta_FFT is a computational biology research pipeline developed at the Williams
 
 Theta-pp is a signed dihedral angle measured between the normal vectors of two consecutive peptide planes along a protein backbone. For each pair of adjacent residues, it produces a single scalar value in degrees. When computed across an entire chain, the result is a one-dimensional signal indexed by residue position called the theta fingerprint.
 
-Unlike phi and psi torsion angles, which describe individual bond rotations independently, theta-pp captures how peptide planes propagate relative to each other along the chain. This makes it sensitive to intermediate-scale geometric organization that DSSP annotations and Ramachandran statistics miss.
+Unlike phi and psi torsion angles, which describe individual bond rotations independently, theta-pp captures how peptide planes propagate relative to each other along the chain. This can make it sensitive to intermediate-scale geometric organization that DSSP annotations and Ramachandran statistics do not represent directly.
 
 Known properties of the theta signal:
 
-Alpha helices produce smooth, low-variance fingerprints with values clustered around positive 90 to 100 degrees.
+Alpha helices often produce smooth, low-variance fingerprints with values clustered around positive 90 to 100 degrees.
 
-Beta strands produce fingerprints clustered around negative 100 to 140 degrees with characteristic residue-to-residue alternation.
+Beta strands often produce fingerprints clustered around roughly negative 100 to negative 140 degrees with characteristic residue-to-residue alternation.
 
-Loop regions produce high-variance, scattered values with no dominant regime.
+Loop regions often produce high-variance, scattered values with no dominant regime.
 
 
 --- Why FFT: ---
 
-Because the theta fingerprint is a one-dimensional spatial signal indexed by residue position, it can be analyzed using FFT as a feature extraction method. Low frequencies in the spectrum correspond to slow, large-scale geometric changes along the chain such as fold-level organization. Higher frequencies correspond to rapid local oscillations characteristic of secondary structure patterns.
+Because the theta fingerprint is a one-dimensional spatial signal indexed by residue position, it can be analyzed using FFT as a feature extraction method. Low frequencies in the spectrum can reflect slower, larger-scale geometric variation along the chain, while higher frequencies can reflect more rapid local oscillations associated with secondary-structure-scale patterns.
 
-The central hypothesis of this pipeline is that sliding-window FFT applied to the theta fingerprint produces position-resolved local spectral signatures that are characteristic of structural class, and that these signatures are consistent enough across different proteins to enable motif comparison without sequence alignment.
+The central hypothesis of this pipeline is that sliding-window FFT applied to the theta fingerprint produces position-resolved local spectral signatures that may be informative of structural class, and that these signatures can be consistent enough across different proteins to support motif comparison without sequence alignment.
 
 
---- Pipeline Structure: ---
+--- Pipeline Structure ---
 
-The pipeline is fully modular. Each stage is a separate script. Analysis logic, plotting logic, and preprocessing logic are never mixed. Every module writes its outputs as CSV or JSON files that serve as inputs to the next stage.
+The pipeline is fully modular. Each stage is a separate script. Analysis logic, plotting logic, and preprocessing logic are never mixed. Every module writes its outputs as CSV or JSON files that serve as inputs to later stages.
 
 Module 1: Global Spectral Analysis
 
@@ -38,7 +38,7 @@ Script: global_spectral_analysis.py
 Input: fft_data/
 Output: output/global_spectra/
 
-Performs global FFT on each contiguous observed segment of each protein chain. Computes per-segment power spectra, dominant frequencies, band power features, and spectral summary statistics. Produces a combined long-format spectrum table, a segment-level feature table, a skipped segment log, and run metadata. No plots are generated here.
+Performs global FFT on each contiguous observed segment of each protein chain. Computes per-segment power spectra, dominant frequencies, band power features, and spectral summary statistics. Produces a combined long-format spectrum table, a segment-level feature table, a skipped-segment log, and run metadata. No plots are generated here.
 
 Module 2: Local Sliding-Window Spectral Analysis
 
@@ -46,7 +46,7 @@ Script: local_spectral_analysis.py
 Input: fft_data/
 Output: output/spectrograms/
 
-Slides a fixed-size window along each contiguous segment and computes FFT at every position. Default window size is 16 residues with step size 1. Produces a per-window feature table with 34 columns including theta statistics, spectral features, band power fractions, and autocorrelation at lags 1 through 10. Also produces per-segment local spectra tables and a combined long-format table. No plots are generated here.
+Slides a fixed-size window along each contiguous segment and computes FFT at every valid position. The default window size is 16 residues with step size 1. Produces a per-window feature table with 34 columns including theta statistics, spectral features, band-power fractions, and autocorrelation at lags 1 through 10. Also produces per-segment local spectra tables and a combined long-format table. No plots are generated here.
 
 Module 3: Protein and Motif Comparison
 
@@ -62,33 +62,35 @@ Script: validation.py
 Input: output/comparison/, pdb/
 Output: output/validation/
 
-Maps DSSP secondary structure assignments from PDB files onto the window-level feature table by residue position. Evaluates motif cluster purity against DSSP labels. Computes precision and recall for each structural class using a corrected DSSP simplification where H covers codes H, G, I, and P; E covers codes E and B; and L covers everything else. Requires mkdssp to be installed and accessible on the system PATH.
+Maps DSSP secondary-structure assignments from PDB files onto the window-level feature table by residue position. Evaluates motif cluster purity against DSSP labels. Computes precision and recall for each structural class using a corrected DSSP simplification where H covers codes H, G, I, and P; E covers codes E and B; and L covers everything else. Requires mkdssp to be installed and accessible on the system PATH.
+
 
 Plotting Scripts:
 
-plot_global_spectra.py reads output/global_spectra/global_spectra_long.csv and produces per-protein power spectrum line plots saved to output/global_spectra_plots/
+plot_global_spectra.py reads output/global_spectra/global_spectra_long.csv and produces per-protein power-spectrum line plots saved to output/global_spectra_plots/
 
 plot_local_spectrograms.py reads output/spectrograms/local_spectra_long.csv and produces per-segment spectrogram heatmaps with frequency on the y-axis and residue position on the x-axis saved to output/spectrogram_plots/
 
-plot_comparison.py reads all outputs from output/comparison/ and produces five quality figures saved to output/comparison_plots/ including a 2D and 3D t-SNE embedding of all windows colored by protein and by motif cluster, a protein similarity heatmap with structural class banding, a spectral distance distribution plot by structural class pairing, and a motif cluster protein composition chart
+plot_comparison.py reads outputs from output/comparison/ and produces summary figures saved to output/comparison_plots/ including a 2D t-SNE embedding of all windows colored by protein and by motif cluster, a protein similarity heatmap with structural-class banding, a spectral distance distribution plot by structural-class pairing, and a motif cluster protein composition chart
 
-plot_validation.py reads all outputs from output/validation/ and produces eight validation figures saved to output/validation_plots/ including a cluster purity heatmap, a t-SNE recolored by DSSP majority label, per-class precision and recall bars, per-protein DSSP composition and accuracy, and supporting ambiguity summaries
+plot_validation.py reads outputs from output/validation/ and produces validation figures saved to output/validation_plots/ including a cluster purity heatmap, a t-SNE recolored by DSSP majority label, per-class precision and recall bars, per-protein DSSP composition and accuracy, and supporting ambiguity summaries
 
-plot_tsne_3d.py generates 3D t-SNE embeddings colored by protein and by motif cluster, with alternate camera angle views, and exports the 3D coordinates for downstream use
+plot_tsne_3d.py generates 3D t-SNE embeddings colored by protein and by motif cluster, saves alternate camera-angle views, and exports the 3D coordinates for downstream use
 
 export_tsne_3d_for_desmos.py exports the 3D t-SNE coordinates in grouped formats organized by motif cluster and by protein for interactive exploration in Desmos 3D
 
 
---- Interactive 3D Motif Map: ---
+--- Interactive 3D Motif Map ---
 
 The 3D t-SNE embedding of all 1123 windows has been exported to Desmos 3D as an interactive, rotatable point cloud organized by motif cluster and by protein. This allows the motif-space geometry to be explored spatially beyond what static matplotlib figures can show.
 
-The live interactive map is available here: [https://www.desmos.com/3d/mbs7ixsydd](url)
+The live interactive map is available here:
+https://www.desmos.com/3d/mbs7ixsydd
 
 The exported coordinate files are stored in output/desmos_3d_exports/ organized by motif cluster and by protein, with import instructions and color guides included in output/desmos_3d_exports/manifests/
 
 
---- Directory Structure: ---
+--- Directory Structure ---
 
 Theta_FFT/
 
@@ -121,7 +123,7 @@ output/validation_plots/ plots from plot_validation.py
 output/desmos_3d_exports/ 3D t-SNE coordinate exports organized by motif cluster and by protein
 
 
---- Proteins in the Dataset: ---
+--- Proteins in the Dataset ---
 
 1AL1 is a pure alpha helix used as a geometric baseline
 
@@ -133,47 +135,48 @@ output/desmos_3d_exports/ 3D t-SNE coordinate exports organized by motif cluster
 
 1GZM is helix-dominated with 7 transmembrane helices
 
-2HHB is helix-dominated, human hemoglobin in the globin fold approximately 75 percent helical
+2HHB is helix-dominated, human hemoglobin in the globin fold, approximately 75 percent helical
 
 1FNA is a pure beta sheet, a fibronectin type III module used for cross-protein sheet comparison
 
-2IGF is a pure beta sheet, an immunoglobulin Fab fragment with characteristic Ig folds
+2IGF is beta-dominated, an immunoglobulin Fab fragment with characteristic Ig folds
 
 1LYZ is mixed, hen egg-white lysozyme with multiple helices and a small antiparallel sheet
 
-2PTN is mixed, trypsin composed of two beta barrel domains with significant loop content and minor helical regions
+2PTN is mixed, trypsin composed of two beta barrel domains with more sheet than helix, substantial loop content, and minor helical regions
 
 
---- Key Results: ---
+--- Key Results ---
 
-The t-SNE embedding of 1123 windows from 9 proteins shows clear spatial separation of helix-dominated windows from sheet and mixed windows with no structural labels used during computation. The two helix proteins form a compact isolated cluster in the embedding, visible in both 2D and 3D projections.
+The t-SNE embedding of 1123 windows from 9 proteins reveals clear separation of helix-dominated windows from much of the sheet and mixed population, with no structural labels used during computation. The two helix-dominated proteins form a compact isolated region in the embedding, visible in both 2D and 3D projections.
 
-The protein similarity matrix shows the highest off-diagonal similarity between 1TEN and 1FNA at 0.360, which are two structurally equivalent proteins sharing the fibronectin type III fold. The helix proteins 2HHB and 1GZM show elevated mutual similarity at 0.350. The lowest values in the matrix are helix-to-sheet cross-class comparisons.
+The protein similarity matrix shows the highest off-diagonal similarity between 1TEN and 1FNA at 0.360, which are two structurally related proteins sharing the fibronectin type III fold. The helix-dominated proteins 2HHB and 1GZM also show elevated mutual similarity at 0.350. The lowest values in the matrix are generally helix-to-sheet cross-class comparisons.
 
-Unsupervised k-means clustering with 6 clusters spontaneously produced two helix-enriched clusters without any structural labels as input. Motif003 is 60.8 percent 1GZM and 34.7 percent 2HHB. Motif004 is 73.9 percent 1GZM and 20.3 percent 2HHB.
+Unsupervised k-means clustering with 6 clusters produced two helix-enriched clusters without any structural labels as input. Motif003 is 60.8 percent 1GZM and 34.7 percent 2HHB. Motif004 is 73.9 percent 1GZM and 20.3 percent 2HHB.
 
-The spectral distance analysis shows a monotonic increase from helix-helix mean distance 1.84 to sheet-sheet mean 2.07 to mixed-mixed mean 2.41 to cross-class mean 2.79, consistent with the hypothesis that same-class windows are more spectrally similar than cross-class windows.
+The spectral distance analysis shows a monotonic increase from helix-helix mean distance 1.84 to sheet-sheet mean 2.07 to mixed-mixed mean 2.41 to cross-class mean 2.79, consistent with the hypothesis that same-class windows are more similar than cross-class windows in the local FFT-derived feature space.
 
-166 reciprocal best-match cross-protein window pairs were identified including a series of high-similarity matches between 1TEN and 1FNA windows with similarity scores above 0.70, representing candidate structurally equivalent local regions in two proteins sharing the same fold.
+A total of 166 reciprocal best-match cross-protein window pairs were identified, including a series of high-similarity matches between 1TEN and 1FNA windows with similarity scores above 0.70, representing candidate structurally related local regions in two proteins sharing the same fold.
 
-DSSP validation confirms that motif003 and motif004 are essentially pure helix clusters with purity scores of 1.000 and 0.978 respectively. Class-level validation yields helix precision of 0.838 and recall of 0.767 with F1 of 0.801. Sheet is partially recovered through motif000 which emerges as weakly sheet-majority. Loop remains diffuse across the remaining mixed clusters.
+DSSP validation confirms that motif003 and motif004 are essentially pure helix clusters with purity scores of 1.000 and 0.978 respectively. Class-level validation yields helix precision of 0.838 and recall of 0.767 with F1 of 0.801. Sheet is partially recovered through motif000, which emerges as weakly sheet-majority. Loop remains diffuse across the remaining mixed clusters.
 
 
---- Signal Handling Conventions: ---
+--- Signal Handling Conventions ---
 
 The signal is theta_signed in degrees as stored in the fft_data CSVs. The x-axis is seq_index, a sequential zero-based integer index used consistently across all modules and never replaced with PDB residue numbers. Gaps in PDB residue numbering are handled by splitting chains into contiguous segments at rows where has_gap_before equals 1. Windows never cross gaps. No smoothing, interpolation, unwrapping, or angle transformation is applied at any stage. Mean centering is applied per window before FFT.
 
 
---- Dependencies: ---
+--- Dependencies ---
 
 Python 3.10 or higher, numpy, pandas, matplotlib, biopython
 
-mkdssp must be installed separately for Module 4 validation. On conda-based systems install with: conda install -c conda-forge dssp
+mkdssp must be installed separately for Module 4 validation. On conda-based systems install with:
+conda install -c conda-forge dssp
 
-All analysis modules use only Python standard library, numpy, and pandas. No scipy, no sklearn, no external FFT libraries. The t-SNE implementation in plot_comparison.py and plot_validation.py is written from scratch in numpy.
+All analysis modules use only Python standard library, numpy, and pandas. No scipy, no sklearn, and no external FFT libraries are required. The t-SNE implementation in plot_comparison.py and plot_validation.py is written from scratch in numpy.
 
 
---- How to Run: ---
+--- How to Run ---
 
 Run modules in order from the project root directory.
 
@@ -193,11 +196,11 @@ python plot_comparison.py
 
 python plot_validation.py
 
-Note: validation.py must be run from an environment where mkdssp is accessible on PATH. On Windows with conda this means running from Anaconda Prompt rather than standard PowerShell.
+Note: validation.py must be run from an environment where mkdssp is accessible on PATH. On Windows with conda, this usually means running from Anaconda Prompt rather than standard PowerShell.
 
 All scripts accept command-line arguments. Run any script with --help to see available options including input and output directory overrides, window size, step size, number of clusters, t-SNE parameters, and verbosity.
 
 
---- Affiliation: ---
+--- Affiliation ---
 
 Williams Lab, School of Chemistry and Biochemistry, Georgia Institute of Technology.
